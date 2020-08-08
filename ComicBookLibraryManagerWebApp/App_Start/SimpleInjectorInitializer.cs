@@ -29,7 +29,10 @@ namespace ComicBookLibraryManagerWebApp.App_Start
         private static void InitializeContainer(Container container)
         {
             container.Register<Context>(Lifestyle.Scoped);
+
             container.Register<BaseComicBooksRepository, ComicBooksRepository>(Lifestyle.Scoped);
+            container.Register<BaseSeriesRepository, SeriesRepository>(Lifestyle.Scoped);
+
             container.Register<ComicBookArtistsRepository>(Lifestyle.Scoped);
             container.Register<SeriesRepository>(Lifestyle.Scoped);
         }

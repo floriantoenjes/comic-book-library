@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public class SeriesRepository : BaseRepository<Series>
+    public class SeriesRepository : BaseSeriesRepository
     {
         public SeriesRepository(Context context) : base(context)
         {
@@ -36,7 +36,7 @@ namespace ComicBookShared.Data
                     .ToList();
         }
 
-        public bool IsTitleAvailable(string title)
+        public override bool IsTitleAvailable(string title)
         {
             return !Context.Series.Any(s => s.Title == title);
         }
