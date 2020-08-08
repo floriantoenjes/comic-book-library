@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ComicBookShared.Models;
-using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public class ComicBookArtistsRepository : BaseComicBookArtistsRepository
+    public abstract class BaseComicBookArtistsRepository : BaseRepository<ComicBookArtist>
     {
-
-        public ComicBookArtistsRepository(Context context) : base(context)
-        {
-        }
+        public BaseComicBookArtistsRepository(Context context) : base(context)
+        { }
 
         public override ComicBookArtist Get(int id, bool includeRelatedEntities = true)
         {
