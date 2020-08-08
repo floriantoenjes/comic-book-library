@@ -16,9 +16,9 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     {
         public SeriesRepository _seriesRepository = null;
 
-        public SeriesController()
+        public SeriesController(SeriesRepository seriesRepository)
         {
-            _seriesRepository = new SeriesRepository(Context);
+            _seriesRepository = seriesRepository;
         }
 
         public ActionResult Index()
