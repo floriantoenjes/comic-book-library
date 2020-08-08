@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public abstract class BaseRepository<TEntity>
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
         where TEntity : class
     {
         protected Context Context { get; private set; }

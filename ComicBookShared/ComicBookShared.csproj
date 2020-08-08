@@ -56,6 +56,8 @@
     <Compile Include="Data\ComicBooksRepository.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
+    <Compile Include="Data\IBaseRepository.cs" />
+    <Compile Include="Data\IComicBooksRepository.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\SeriesRepository.cs" />
     <Compile Include="Models\Artist.cs" />

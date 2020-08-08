@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public class ComicBooksRepository : BaseRepository<ComicBook>
+    public class ComicBooksRepository : BaseRepository<ComicBook>, IComicBooksRepository
     {
 
         public ComicBooksRepository(Context context) : base(context)
