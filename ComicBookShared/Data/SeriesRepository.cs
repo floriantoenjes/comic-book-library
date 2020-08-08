@@ -16,8 +16,14 @@ namespace ComicBookShared.Data
 
         public override Series Get(int id, bool includeRelatedEntities = true)
         {
-            return Context.Series
-                .Include(s => s.ComicBooks)
+            var series = Context.Series.AsQueryable();
+
+            if (includeRelatedEntities)
+            {
+                series.Include(s => s.ComicBooks);
+            }
+
+            return series
                 .Where(s => s.Id == id)
                 .SingleOrDefault();
         }
