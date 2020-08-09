@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ArtistsRepository.cs" />
+    <Compile Include="Data\BaseArtistsRepository.cs" />
     <Compile Include="Data\BaseComicBookArtistsRepository.cs" />
     <Compile Include="Data\BaseSeriesRepository.cs" />
     <Compile Include="Data\ComicBookArtistsRepository.cs" />

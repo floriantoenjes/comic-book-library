@@ -14,8 +14,6 @@ namespace ComicBookShared.Data
         {
         }
 
-        public abstract override IList<Series> GetList();
-
-        public abstract bool IsTitleAvailable(string title);
+        public abstract bool IsTitleAvailable(int id, string title);
     }
 }

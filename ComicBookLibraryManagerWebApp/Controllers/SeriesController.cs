@@ -14,7 +14,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     /// </summary>
     public class SeriesController : BaseController
     {
-        public BaseSeriesRepository _seriesRepository = null;
+        private BaseSeriesRepository _seriesRepository = null;
 
         public SeriesController(BaseSeriesRepository seriesRepository)
         {
@@ -146,7 +146,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             if (ModelState.IsValidField("Title"))
             {
                 // Then make sure that the provided title is unique.
-                if (!_seriesRepository.IsTitleAvailable(series.Title))
+                if (!_seriesRepository.IsTitleAvailable(series.Id, series.Title))
                 {
                     ModelState.AddModelError("Title",
                         "The provided Title is in use by another series.");

@@ -36,9 +36,9 @@ namespace ComicBookShared.Data
                     .ToList();
         }
 
-        public override bool IsTitleAvailable(string title)
+        public override bool IsTitleAvailable(int id, string title)
         {
-            return !Context.Series.Any(s => s.Title == title);
+            return !Context.Series.Any(s => s.Id != id && s.Title == title);
         }
     }
 }
