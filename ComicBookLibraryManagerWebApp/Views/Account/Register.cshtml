@@ -8,6 +8,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" })
+
     <div class="form-group">
         @Html.LabelFor(a => a.Email, new { @class = "control-label" })
         @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
