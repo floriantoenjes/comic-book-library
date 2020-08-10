@@ -62,5 +62,10 @@ namespace ComicBookLibraryManagerWebApp.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult SignIn()
+        {
+            return View();
+        }
     }
 }

@@ -1,10 +1,10 @@
-﻿@model ComicBookLibraryManagerWebApp.ViewModels.AccountRegisterViewModel
+﻿@model ComicBookLibraryManagerWebApp.ViewModels.AccountSignInViewModel
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "SignIn";
 }
 
-<h2>Register</h2>
+<h2>SignIn</h2>
 
 @using (Html.BeginForm())
 {
@@ -23,24 +23,18 @@
                 @Html.TextBoxFor(a => a.Password, new { @class = "form-control", type = "password" })
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(a => a.ConfirmPassword, new { @class = "control-label" })
-                @Html.TextBoxFor(a => a.ConfirmPassword, new { @class = "form-control", type = "password" })
-            </div>
-
             <div class="col-md-12">
                 <div class="pad-top">
                     <button type="submit" class="btn btn-success btn-lg margin-right">
-                        <span class="glyphicon glyphicon-save"></span> Register
+                        <span class="glyphicon glyphicon-save"></span> Sign In
                     </button>
                 </div>
             </div>
+
         </div>
     </div>
 
+    <br />
+    <br />
 
-    <br />
-    <br />
 }
-
-
