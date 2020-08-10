@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ComicBookLibraryManagerWebApp.ViewModels;
 using ComicBookShared.Models;
 using ComicBookShared.Security;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 namespace ComicBookLibraryManagerWebApp.Controllers
@@ -67,5 +68,38 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<ActionResult> SignIn(AccountSignInViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.RememberMe, shouldLockout: false);
+
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToAction("Index", "ComicBooks");
+                case SignInStatus.Failure:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(viewModel);
+                case SignInStatus.LockedOut:
+                case SignInStatus.RequiresVerification:
+                    throw new NotImplementedException("Identity feature not implemented.");
+                default:
+                    throw new Exception();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SignOut()
+        {
+            _authenticationManager.SignOut();
+            return RedirectToAction("SignIn", "Account");
+        }
+
     }
 }

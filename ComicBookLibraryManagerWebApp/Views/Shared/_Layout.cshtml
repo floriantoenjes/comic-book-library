@@ -28,8 +28,15 @@
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ComicBooks" ? "active" : "")">@Html.ActionLink("Comic Books", "Index", "ComicBooks")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Series" ? "active" : "")">@Html.ActionLink("Series", "Index", "Series")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Artists" ? "active" : "")">@Html.ActionLink("Artists", "Index", "Artists")</li>
-                    <li class="@(ViewContext.RouteData.GetRequiredString("action") == "Register" ? "active" : "")">@Html.ActionLink("Register", "Register", "Account")</li>
-                    <li class="@(ViewContext.RouteData.GetRequiredString("action") == "SignIn" ? "active" : "")">@Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="@(ViewContext.RouteData.GetRequiredString("action") == "Register" ? "active" : "")">@Html.ActionLink("Register", "Register", "Account")</li>
+                        <li class="@(ViewContext.RouteData.GetRequiredString("action") == "SignIn" ? "active" : "")">@Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                    }
+                    else
+                    {
+                        <li id="sign-out"><a href="#">Sign Out</a></li>
+                    }
                 </ul>
             </div>
         </div>
@@ -51,6 +58,12 @@
     <script>
         $('input.datepicker').datepicker({
             format: 'm/d/yyyy'
+        });
+
+        $('#sign-out a').click(() => {
+            $.post("@Url.Action("SignOut", "Account")").done(() => {
+                window.location.href = "@Url.Action("SignIn", "Account")";
+            });
         });
     </script>
 </body>
