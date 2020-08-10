@@ -24,3 +24,8 @@ body {
 .validation-summary-valid {
     display: none;
 }
+
+
+#registration-link {
+    margin-left: 20px;
+}
