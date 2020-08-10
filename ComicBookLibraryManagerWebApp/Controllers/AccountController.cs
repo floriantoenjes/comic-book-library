@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ComicBookLibraryManagerWebApp.ViewModels;
+using ComicBookShared.Models;
 using ComicBookShared.Security;
 using Microsoft.Owin.Security;
 
@@ -38,6 +39,25 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             if (existingUser != null)
             {
                 ModelState.AddModelError("Email", $"The provided email address '{viewModel.Email}' has already been used to register an account. Please sign-in using your existing account.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var user = new User() { UserName = viewModel.Email, Email = viewModel.Email };
+
+                var result = await _userManager.CreateAsync(user, viewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    return RedirectToAction("Index", "ComicBooks");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+
             }
 
             return View(viewModel);
