@@ -28,6 +28,7 @@
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ComicBooks" ? "active" : "")">@Html.ActionLink("Comic Books", "Index", "ComicBooks")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Series" ? "active" : "")">@Html.ActionLink("Series", "Index", "Series")</li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Artists" ? "active" : "")">@Html.ActionLink("Artists", "Index", "Artists")</li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")">@Html.ActionLink("Register", "Register", "Account")</li>
                 </ul>
             </div>
         </div>
