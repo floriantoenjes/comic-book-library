@@ -1,4 +1,7 @@
 ﻿using ComicBookShared.Models;
+using ComicBookShared.Security;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
 
@@ -172,6 +175,19 @@ namespace ComicBookShared.Data
             comicBook9.AddArtist(artistJeffSmith, roleScript);
             comicBook9.AddArtist(artistJeffSmith, rolePencils);
             context.ComicBooks.Add(comicBook9);
+
+            var userStore = new UserStore<User>(context);
+            var userManager = new ApplicationUserManager(userStore);
+
+            var testUser = new User()
+            {
+                UserName = "test@email.com",
+                Email = "test@email.com"
+            };
+            testUser.FavoriteComicBooks.Add(comicBook1);
+            testUser.FavoriteComicBooks.Add(comicBook5);
+
+            userManager.Create(testUser, "P@ssw0rd");
 
             context.SaveChanges();
         }

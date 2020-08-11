@@ -40,6 +40,7 @@ namespace ComicBookLibraryManagerWebApp.App_Start
             container.Register<BaseSeriesRepository, SeriesRepository>(Lifestyle.Scoped);
             container.Register<BaseComicBookArtistsRepository, ComicBookArtistsRepository>(Lifestyle.Scoped);
             container.Register<BaseArtistsRepository, ArtistsRepository>(Lifestyle.Scoped);
+            container.Register<BaseUserRepository, UserRepository>(Lifestyle.Scoped);
 
             container.Register<ComicBookArtistsRepository>(Lifestyle.Scoped);
             container.Register<SeriesRepository>(Lifestyle.Scoped);

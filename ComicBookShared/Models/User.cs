@@ -9,5 +9,11 @@ namespace ComicBookShared.Models
 {
     public class User : IdentityUser
     {
+        public User()
+        {
+            FavoriteComicBooks = new List<ComicBook>();
+        }
+
+        public ICollection<ComicBook> FavoriteComicBooks { get; set; }
     }
 }

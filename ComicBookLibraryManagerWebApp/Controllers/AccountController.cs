@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ComicBookLibraryManagerWebApp.ViewModels;
+using ComicBookShared.Data;
 using ComicBookShared.Models;
 using ComicBookShared.Security;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity;
 
 namespace ComicBookLibraryManagerWebApp.Controllers
 {
@@ -17,15 +19,18 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authenticationManager;
+        private readonly BaseUserRepository _userRepository;
 
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
-            IAuthenticationManager authenticationManager)
+            IAuthenticationManager authenticationManager,
+            BaseUserRepository userRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authenticationManager = authenticationManager;
+            _userRepository = userRepository;
         }
 
         public ActionResult Register()
@@ -99,6 +104,12 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         {
             _authenticationManager.SignOut();
             return RedirectToAction("SignIn", "Account");
+        }
+
+        public ActionResult Favorites()
+        {
+            var favoriteComicBooks = _userRepository.GetFavoriteComicBooks(User.Identity.GetUserId());
+            return View(favoriteComicBooks);
         }
 
     }

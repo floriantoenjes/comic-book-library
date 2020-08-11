@@ -82,6 +82,7 @@
     <Compile Include="Data\BaseArtistsRepository.cs" />
     <Compile Include="Data\BaseComicBookArtistsRepository.cs" />
     <Compile Include="Data\BaseSeriesRepository.cs" />
+    <Compile Include="Data\BaseUserRepository.cs" />
     <Compile Include="Data\ComicBookArtistsRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\ComicBooksRepository.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Data\BaseComicBooksRepository.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\SeriesRepository.cs" />
+    <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ComicBook.cs" />
     <Compile Include="Models\ComicBookArtist.cs" />

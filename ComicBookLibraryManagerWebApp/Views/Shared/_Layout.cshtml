@@ -30,11 +30,12 @@
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Artists" ? "active" : "")">@Html.ActionLink("Artists", "Index", "Artists")</li>
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li id="signin-link" class="@(ViewContext.RouteData.GetRequiredString("action") == "SignIn" ? "active" : "")">@Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                        <li class="nav-margin-left @(ViewContext.RouteData.GetRequiredString("action") == "SignIn" ? "active" : "")">@Html.ActionLink("Sign In", "SignIn", "Account")</li>
                         <li class="@(ViewContext.RouteData.GetRequiredString("action") == "Register" ? "active" : "")">@Html.ActionLink("Register", "Register", "Account")</li>
                     }
                     else
                     {
+                        <li class="nav-margin-left @(ViewContext.RouteData.GetRequiredString("action") == "Favorites" ? "active" : "")">@Html.ActionLink("My Favorites", "Favorites", "Account")</li>
                         <li id="sign-out"><a href="#">Sign Out</a></li>
                     }
                 </ul>

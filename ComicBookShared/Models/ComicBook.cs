@@ -15,6 +15,7 @@ namespace ComicBookShared.Models
         public ComicBook()
         {
             Artists = new List<ComicBookArtist>();
+            UsersWhoChoseAsFavorite = new List<User>();
         }
 
         public int Id { get; set; }
@@ -30,6 +31,8 @@ namespace ComicBookShared.Models
 
         public Series Series { get; set; }
         public ICollection<ComicBookArtist> Artists { get; set; }
+
+        public ICollection<User> UsersWhoChoseAsFavorite { get; set; }
 
         /// <summary>
         /// The display text for a comic book.

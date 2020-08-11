@@ -1,0 +1,12 @@
+﻿@model List<ComicBookShared.Models.ComicBook>
+
+@{
+    ViewBag.Title = "Favorites";
+}
+
+<h2>Favorites</h2>
+@foreach (var comicBook in Model)
+{
+    <p>@comicBook.DisplayText</p>
+}
+
