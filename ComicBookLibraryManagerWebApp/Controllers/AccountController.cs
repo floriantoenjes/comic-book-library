@@ -20,17 +20,20 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authenticationManager;
         private readonly BaseUserRepository _userRepository;
+        private readonly BaseComicBooksRepository _comicBooksRepository;
 
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
             IAuthenticationManager authenticationManager,
-            BaseUserRepository userRepository)
+            BaseUserRepository userRepository,
+            BaseComicBooksRepository comicBooksRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authenticationManager = authenticationManager;
             _userRepository = userRepository;
+            _comicBooksRepository = comicBooksRepository;
         }
 
         public ActionResult Register()
@@ -110,6 +113,23 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         {
             var favoriteComicBooks = _userRepository.GetFavoriteComicBooks(User.Identity.GetUserId());
             return View(favoriteComicBooks);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveFavorite(int id)
+        {
+            var comicBook = _comicBooksRepository.Get(id);
+
+            if (comicBook == null)
+            {
+                return RedirectToAction("Favorites");
+            }
+
+            var user = _userManager.FindByName(User.Identity.Name);
+            comicBook.UsersWhoChoseAsFavorite.Remove(user);
+            _comicBooksRepository.Update(comicBook);
+
+            return RedirectToAction("Favorites");
         }
 
     }

@@ -8,5 +8,11 @@
 @foreach (var comicBook in Model)
 {
     <p>@comicBook.DisplayText</p>
+    using (Html.BeginForm("RemoveFavorite", "Account", new { id = comicBook.Id }))
+    {
+        <button type="submit" class="btn btn-danger btn-lg margin-right">
+            <span class="glyphicon glyphicon-save"></span> Delete
+        </button>
+    }
 }
 

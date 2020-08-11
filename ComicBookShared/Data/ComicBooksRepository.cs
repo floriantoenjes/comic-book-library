@@ -33,7 +33,8 @@ namespace ComicBookShared.Data
                 comicBooks = comicBooks
                     .Include(cb => cb.Series)
                     .Include(cb => cb.Artists.Select(a => a.Artist))
-                    .Include(cb => cb.Artists.Select(a => a.Role));
+                    .Include(cb => cb.Artists.Select(a => a.Role))
+                    .Include(cb => cb.UsersWhoChoseAsFavorite);
             }
 
             return comicBooks

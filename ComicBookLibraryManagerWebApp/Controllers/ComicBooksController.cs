@@ -9,6 +9,8 @@ using ComicBookLibraryManagerWebApp.ViewModels;
 using System.Net;
 using System.Data.Entity.Infrastructure;
 using ComicBookShared.Data;
+using Microsoft.AspNet.Identity;
+using ComicBookShared.Security;
 
 namespace ComicBookLibraryManagerWebApp.Controllers
 {
@@ -19,7 +21,9 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     {
         private BaseComicBooksRepository _comicBooksRepository = null;
 
-        public ComicBooksController(BaseComicBooksRepository comicBooksRepository)
+        public ComicBooksController(
+            BaseComicBooksRepository comicBooksRepository
+        )
         {
             _comicBooksRepository = comicBooksRepository;
         }
