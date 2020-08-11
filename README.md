@@ -1,6 +1,6 @@
 ## ASP.NET MVC Comic Book Library Web Application
 
-### Based on a Teamtreehouse Project
+### Based on a TeamTreehouse Project
 
 #### Overview
 
