@@ -7,10 +7,12 @@
 <h2>Favorites</h2>
 @foreach (var comicBook in Model)
 {
-    <div id="comic-book-@comicBook.Id" class="row pad-bottom pad-top">
+    <div id="comic-book-@comicBook.Id" class="row pad-top">
 
         <div class="col-md-6">
-            @Html.ActionLink(comicBook.DisplayText, "Detail", "ComicBooks", new { id = comicBook.Id }, null)
+            <h4>
+                @Html.ActionLink(comicBook.DisplayText, "Detail", "ComicBooks", new { id = comicBook.Id }, null)
+            </h4>
         </div>
 
         <div class="col-md-6">
