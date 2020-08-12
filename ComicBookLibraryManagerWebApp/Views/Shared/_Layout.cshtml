@@ -70,6 +70,15 @@
                 window.location.href = "@Url.Action("SignIn", "Account")";
             });
         });
+
+        function createAddFavoriteCall(id) {
+            return $.post("@Url.Action("AddFavorite", "Account")" + "/" + id);
+        }
+
+        function createRemoveFavoriteCall(id) {
+            return $.post("@Url.Action("AddFavorite", "Account")" + "/" + id);
+        }
+
     </script>
 </body>
 </html>
