@@ -36,12 +36,14 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             _comicBooksRepository = comicBooksRepository;
         }
 
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> Register(AccountRegisterViewModel viewModel)
         {
             var existingUser = await _userManager.FindByEmailAsync(viewModel.Email);
@@ -72,12 +74,14 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             return View(viewModel);
         }
 
+        [AllowAnonymous]
         public ActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> SignIn(AccountSignInViewModel viewModel)
         {
             if (!ModelState.IsValid)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ComicBookLibraryManagerWebApp.App_Start;
 
 namespace ComicBookLibraryManagerWebApp
 {
@@ -13,6 +14,7 @@ namespace ComicBookLibraryManagerWebApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }
