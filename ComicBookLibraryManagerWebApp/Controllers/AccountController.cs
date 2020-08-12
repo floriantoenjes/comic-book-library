@@ -116,20 +116,37 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveFavorite(int id)
+        public JsonResult RemoveFavorite(int id)
         {
             var comicBook = _comicBooksRepository.Get(id);
 
             if (comicBook == null)
             {
-                return RedirectToAction("Favorites");
+                return Json(false);
             }
 
             var user = _userManager.FindByName(User.Identity.Name);
             comicBook.UsersWhoChoseAsFavorite.Remove(user);
             _comicBooksRepository.Update(comicBook);
 
-            return RedirectToAction("Favorites");
+            return Json(true);
+        }
+
+        [HttpPost]
+        public JsonResult AddFavorite(int id)
+        {
+            var comicBook = _comicBooksRepository.Get(id);
+
+            if (comicBook == null)
+            {
+                return Json(false);
+            }
+
+            var user = _userManager.FindByName(User.Identity.Name);
+            comicBook.UsersWhoChoseAsFavorite.Add(user);
+            _comicBooksRepository.Update(comicBook);
+
+            return Json(true);
         }
 
     }

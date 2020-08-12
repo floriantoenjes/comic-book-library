@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Comic Book Detail";
+
+    bool isFavorite()
+    {
+        return Model.UsersWhoChoseAsFavorite.Select(u => u.UserName).Any(n => n == User.Identity.Name);
+    }
 }
 
 @Html.Partial("_Message")
@@ -106,5 +111,38 @@
     <a href="@Url.Action("Index")" class="btn btn-default btn-lg">
         <span class="glyphicon glyphicon-step-backward"></span> Back
     </a>
+    <div class="pull-right">
+        
+        <button class="remove-favorite btn btn-danger btn-lg" onclick="removeFavorite(@Model.Id)" 
+                style="display: @(isFavorite() ? " " : "none") ">
+            <span class="glyphicon glyphicon-star"></span> Remove Favorite
+        </button>
+
+        <button class="add-favorite btn btn-success btn-lg" onclick="addFavorite(@Model.Id)"
+                style="display: @(isFavorite() ? "none" : " ") ">
+            <span class="glyphicon glyphicon-star-empty"></span> Add Favorite
+        </button>
+
+    </div>
 </div>
+
+<script>
+    function addFavorite(id) {
+        $.post("@Url.Action("AddFavorite", "Account")" + "/" + id).done((success) => {
+            if (success) {
+                $(".remove-favorite").show();
+                $(".add-favorite").hide();
+            }
+        });
+    }
+
+    function removeFavorite(id) {
+        $.post("@Url.Action("RemoveFavorite", "Account")" + "/" + id).done((success) => {
+            if (success) {
+                $(".remove-favorite").hide();
+                $(".add-favorite").show();
+            }
+        });
+    }
+</script>
 

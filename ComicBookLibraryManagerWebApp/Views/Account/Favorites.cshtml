@@ -7,12 +7,40 @@
 <h2>Favorites</h2>
 @foreach (var comicBook in Model)
 {
-    <p>@comicBook.DisplayText</p>
-    using (Html.BeginForm("RemoveFavorite", "Account", new { id = comicBook.Id }))
-    {
-        <button type="submit" class="btn btn-danger btn-lg margin-right">
-            <span class="glyphicon glyphicon-save"></span> Delete
-        </button>
-    }
+    <div id="comic-book-@comicBook.Id" class="row pad-bottom">
+        <div class="col-md-6">
+            <p>@comicBook.DisplayText</p>
+        </div>
+        <div class="col-md-6">
+            <button class="add-favorite btn btn-success margin-right" onclick="addFavorite(@comicBook.Id)" style="display: none">
+                <span class="glyphicon glyphicon-star-empty"></span> Add Favorite
+            </button>
+
+            <button class="remove-favorite btn btn-danger margin-right" onclick="removeFavorite(@comicBook.Id)">
+                <span class="glyphicon glyphicon-star"></span> Remove Favorite
+            </button>
+        </div>
+</div>
 }
+
+<script>
+    function addFavorite(id) {
+        $.post("@Url.Action("AddFavorite", "Account")" + "/" + id).done((success) => {
+            if (success) {
+                $("#comic-book-" + id + " .remove-favorite").show();
+                $("#comic-book-" + id + " .add-favorite").hide();
+            }
+        });
+    }
+
+    function removeFavorite(id) {
+        $.post("@Url.Action("RemoveFavorite", "Account")" + "/" + id).done((success) => {
+            if (success) {
+                $("#comic-book-" + id + " .remove-favorite").hide();
+                $("#comic-book-" + id + " .add-favorite").show();
+            }
+        });
+    }
+
+</script>
 
