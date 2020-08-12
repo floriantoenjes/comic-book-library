@@ -7,10 +7,12 @@
 <h2>Favorites</h2>
 @foreach (var comicBook in Model)
 {
-    <div id="comic-book-@comicBook.Id" class="row pad-bottom">
+    <div id="comic-book-@comicBook.Id" class="row pad-bottom pad-top">
+
         <div class="col-md-6">
-            <p>@comicBook.DisplayText</p>
+            @Html.ActionLink(comicBook.DisplayText, "Detail", "ComicBooks", new { id = comicBook.Id }, null)
         </div>
+
         <div class="col-md-6">
             <button class="add-favorite btn btn-success margin-right" onclick="addFavorite(@comicBook.Id)" style="display: none">
                 <span class="glyphicon glyphicon-star-empty"></span> Add Favorite
