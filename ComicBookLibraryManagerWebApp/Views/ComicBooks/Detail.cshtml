@@ -135,6 +135,9 @@
                 $(".add-favorite").hide();
                 $('.add-favorite').prop("disabled", false);
             }
+        }).fail((error) => {
+            alert('Request to add favorite timed out');
+            $('.add-favorite').prop("disabled", false);
         });
     }
 
@@ -146,6 +149,9 @@
                 $('.remove-favorite').prop("disabled", false);
                 $(".add-favorite").show();
             }
+        }).fail((error) => {
+            alert('Request to remove favorite timed out');
+            $('.remove-favorite').prop("disabled", false);
         });
     }
 </script>

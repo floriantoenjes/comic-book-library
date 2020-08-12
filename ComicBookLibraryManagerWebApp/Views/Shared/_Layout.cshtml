@@ -57,6 +57,10 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
     <script>
+        $.ajax({
+            timeout: 10_000
+        });
+
         $('input.datepicker').datepicker({
             format: 'm/d/yyyy'
         });

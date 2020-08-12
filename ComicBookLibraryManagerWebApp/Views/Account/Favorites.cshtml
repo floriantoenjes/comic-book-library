@@ -27,21 +27,31 @@
 
 <script>
     function addFavorite(id) {
+        $("#comic-book-" + id + " .add-favorite").prop("disabled", true);
         $.post("@Url.Action("AddFavorite", "Account")" + "/" + id).done((success) => {
             if (success) {
                 $("#comic-book-" + id + " .remove-favorite").show();
                 $("#comic-book-" + id + " .add-favorite").hide();
+                $("#comic-book-" + id + " .add-favorite").prop("disabled", false);
             }
-        });
+        }).fail((error) => {
+            alert('Request to add favorite timed out');
+            $("#comic-book-" + id + " .add-favorite").prop("disabled", false);
+        });;
     }
 
     function removeFavorite(id) {
+        $("#comic-book-" + id + " .remove-favorite").prop("disabled", true);
         $.post("@Url.Action("RemoveFavorite", "Account")" + "/" + id).done((success) => {
             if (success) {
                 $("#comic-book-" + id + " .remove-favorite").hide();
+                $("#comic-book-" + id + " .remove-favorite").prop("disabled", false);
                 $("#comic-book-" + id + " .add-favorite").show();
             }
-        });
+        }).fail((error) => {
+            alert('Request to remove favorite timed out');
+            $("#comic-book-" + id + " .remove-favorite").prop("disabled", false);
+        });;
     }
 
 </script>
