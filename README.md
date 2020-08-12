@@ -18,4 +18,5 @@ from a TeamTreehouse Course on the subject.
 
 * Made use of Dependency Inversion Principle by introducing new interfaces and using dependency injection via SimpleInjector.
 * Added user authentication and authorization.
-* Added the ability for users to list their favorite comic books. 
+* Gave users the ability to list their favorite comic books. 
+* Adding and removal of favorites via AJAX calls.
