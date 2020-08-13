@@ -25,9 +25,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ComicBooks" ? "active" : "")">@Html.ActionLink("Comic Books", "Index", "ComicBooks")</li>
-                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Series" ? "active" : "")">@Html.ActionLink("Series", "Index", "Series")</li>
-                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Artists" ? "active" : "")">@Html.ActionLink("Artists", "Index", "Artists")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "ComicBooks" ? "active" : "")">@Html.ActionLink("Comic Books", "Index", "ComicBooks")</li>
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Series" ? "active" : "")">@Html.ActionLink("Series", "Index", "Series")</li>
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Artists" ? "active" : "")">@Html.ActionLink("Artists", "Index", "Artists")</li>
+                    }
+
                     @if (!User.Identity.IsAuthenticated)
                     {
                         <li class="nav-margin-left @(ViewContext.RouteData.GetRequiredString("action") == "SignIn" ? "active" : "")">@Html.ActionLink("Sign In", "SignIn", "Account")</li>
@@ -66,9 +70,11 @@
         });
 
         $('#sign-out a').click(() => {
-            $.post("@Url.Action("SignOut", "Account")").done(() => {
+            if (confirm("Do you want to sign out?")) {
+                $.post("@Url.Action("SignOut", "Account")").done(() => {
                 window.location.href = "@Url.Action("SignIn", "Account")";
             });
+            }
         });
 
         function createAddFavoriteCall(id) {

@@ -49,10 +49,10 @@ namespace ComicBookLibraryManagerWebApp.App_Start
             container.Register<ApplicationSignInManager>(Lifestyle.Scoped);
 
             container.Register(() =>
-            container.IsVerifying
-                ? new OwinContext().Authentication
-                : HttpContext.Current.GetOwinContext().Authentication,
-            Lifestyle.Scoped);
+                container.IsVerifying
+                    ? new OwinContext().Authentication
+                    : HttpContext.Current.GetOwinContext().Authentication,
+                Lifestyle.Scoped);
 
             container.Register<IUserStore<User>>(() =>
                         new UserStore<User>(container.GetInstance<Context>()),
