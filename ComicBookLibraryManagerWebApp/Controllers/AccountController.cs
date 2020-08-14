@@ -94,7 +94,7 @@ namespace ComicBookLibraryManagerWebApp.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "ComicBooks");
+                    return Redirect(Request.QueryString["ReturnUrl"]);
                 case SignInStatus.Failure:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(viewModel);
