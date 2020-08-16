@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ComicBookShared.Models;
 using System.Data.Entity;
+using ComicBookShared.Data;
 
 namespace ComicBookShared.Data
 {
-    public class ArtistsRepository : BaseArtistsRepository
+    public class ArtistsRepository : BaseRepository<Artist>, IBaseArtistsRepository
     {
         public ArtistsRepository(Context context) : base(context)
         {
@@ -34,7 +35,7 @@ namespace ComicBookShared.Data
                 .ToList();
         }
 
-        public override bool IsNameAvailable(int id, string name)
+        public bool IsNameAvailable(int id, string name)
         {
             return !Context.Artists.Any(a => a.Id != id && a.Name == name);
         }

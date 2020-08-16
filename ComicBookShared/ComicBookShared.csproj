@@ -78,21 +78,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\ArtistsRepository.cs" />
-    <Compile Include="Data\BaseArtistsRepository.cs" />
-    <Compile Include="Data\BaseComicBookArtistsRepository.cs" />
-    <Compile Include="Data\BaseSeriesRepository.cs" />
-    <Compile Include="Data\BaseUserRepository.cs" />
-    <Compile Include="Data\ComicBookArtistsRepository.cs" />
+    <Compile Include="Data\Artists\ArtistsRepository.cs" />
+    <Compile Include="Data\Artists\IBaseArtistsRepository.cs" />
+    <Compile Include="Data\ComicBookArtists\IBaseComicBookArtistsRepository.cs" />
+    <Compile Include="Data\ComicBooks\IBaseComicBooksRepository.cs" />
+    <Compile Include="Data\Series\IBaseSeriesRepository.cs" />
+    <Compile Include="Data\Users\IBaseUserRepository.cs" />
+    <Compile Include="Data\ComicBookArtists\ComicBookArtistsRepository.cs" />
     <Compile Include="Data\BaseRepository.cs" />
-    <Compile Include="Data\ComicBooksRepository.cs" />
+    <Compile Include="Data\ComicBooks\ComicBooksRepository.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\IBaseRepository.cs" />
-    <Compile Include="Data\BaseComicBooksRepository.cs" />
     <Compile Include="Data\Repository.cs" />
-    <Compile Include="Data\SeriesRepository.cs" />
-    <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Data\Series\SeriesRepository.cs" />
+    <Compile Include="Data\Users\UserRepository.cs" />
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\ComicBook.cs" />
     <Compile Include="Models\ComicBookArtist.cs" />

@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ComicBookShared.Models;
+using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public abstract class BaseComicBookArtistsRepository : BaseRepository<ComicBookArtist>
+    public class ComicBookArtistsRepository : BaseRepository<ComicBookArtist>, IBaseComicBookArtistsRepository
     {
-        public BaseComicBookArtistsRepository(Context context) : base(context)
-        { }
+
+        public ComicBookArtistsRepository(Context context) : base(context)
+        {
+        }
 
         public override ComicBookArtist Get(int id, bool includeRelatedEntities = true)
         {
@@ -32,7 +34,10 @@ namespace ComicBookShared.Data
 
         public override IList<ComicBookArtist> GetList()
         {
-            throw new NotImplementedException();
+            return Context.ComicBookArtists
+                .Include(ca => ca.Artist)
+                .Include(ca => ca.ComicBook)
+                .ToList();
         }
     }
 }

@@ -8,13 +8,15 @@ using ComicBookShared.Models;
 
 namespace ComicBookShared.Data
 {
-    public class UserRepository : BaseUserRepository
+    public class UserRepository : IBaseUserRepository
     {
-        public UserRepository(Context context) : base(context)
+        public Context Context { get; set; }
+        public UserRepository(Context context)
         {
+            Context = context;
         }
 
-        public override IList<ComicBook> GetFavoriteComicBooks(string userGuid)
+        public IList<ComicBook> GetFavoriteComicBooks(string userGuid)
         {
             return Context.Users
                 .Where(u => u.Id == userGuid)

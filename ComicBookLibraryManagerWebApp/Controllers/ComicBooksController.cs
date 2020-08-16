@@ -19,10 +19,10 @@ namespace ComicBookLibraryManagerWebApp.Controllers
     /// </summary>
     public class ComicBooksController : BaseController
     {
-        private BaseComicBooksRepository _comicBooksRepository = null;
+        private IBaseComicBooksRepository _comicBooksRepository = null;
 
         public ComicBooksController(
-            BaseComicBooksRepository comicBooksRepository
+            IBaseComicBooksRepository comicBooksRepository
         )
         {
             _comicBooksRepository = comicBooksRepository;

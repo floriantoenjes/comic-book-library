@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace ComicBookShared.Data
 {
-    public class ComicBooksRepository : BaseComicBooksRepository
+    public class ComicBooksRepository : BaseRepository<ComicBook>, IBaseComicBooksRepository
     {
 
         public ComicBooksRepository(Context context) : base(context)
@@ -42,7 +42,7 @@ namespace ComicBookShared.Data
                     .SingleOrDefault();
         }
 
-        public override bool ComicBookSeriesHasIssueNumber(
+        public bool ComicBookSeriesHasIssueNumber(
             int comicBookId, int seriesId, int issueNumber)
         {
             return Context.ComicBooks.Any(cb => cb.Id != comicBookId &&
@@ -50,7 +50,7 @@ namespace ComicBookShared.Data
                     cb.IssueNumber == issueNumber);
         }
 
-        public override bool ComicBookHasArtistRoleCombination(
+        public bool ComicBookHasArtistRoleCombination(
             int comicBookId, int artistId, int roleId)
         {
             return Context.ComicBookArtists.Any(ca => ca.ComicBookId == comicBookId &&

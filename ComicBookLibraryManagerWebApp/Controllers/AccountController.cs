@@ -19,15 +19,15 @@ namespace ComicBookLibraryManagerWebApp.Controllers
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authenticationManager;
-        private readonly BaseUserRepository _userRepository;
-        private readonly BaseComicBooksRepository _comicBooksRepository;
+        private readonly IBaseUserRepository _userRepository;
+        private readonly IBaseComicBooksRepository _comicBooksRepository;
 
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
             IAuthenticationManager authenticationManager,
-            BaseUserRepository userRepository,
-            BaseComicBooksRepository comicBooksRepository)
+            IBaseUserRepository userRepository,
+            IBaseComicBooksRepository comicBooksRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
